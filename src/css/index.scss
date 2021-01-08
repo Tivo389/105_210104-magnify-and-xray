@@ -6,12 +6,22 @@
 @import '_variables';
 @import '_font';
 
+
+
 html {
-  --imageSize: 280px;
-  --magnificationSize: 4;
+  --imageSize: 240px;
+  --magnificationSize: 3;
   --magnificationArea: 80px;
   --dropShadow: 0 1px 6px rgba(32,33,36,.28);
+  @include w480 {
+    --magnificationSize: 4;
+  }
+  @include w640 {
+    --magnificationSize: 5;
+  }
 }
+
+
 
 .mainContainer {
   align-items: center;
@@ -24,56 +34,81 @@ html {
   overflow: hidden;
 }
 
-.limeImage {
-  width: var(--imageSize);
-  line-height: 0;
+
+
+.componentMagnify {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  @include w640 {
+    justify-content: center;
+  }
+}
+
+.magnifiedImageSection {
+  align-items: center;
+  display: flex;
+  flex: 0 0 auto;
+  height: 100vw;
+  justify-content: center;
+  overflow: hidden;
+  width: 100vw;
+  & .magnifiedImageArea {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+  }
+  & .magnifiedImage {
+    transform: translate(0, 0);
+    width: calc(var(--imageSize) * var(--magnificationSize));
+    will-change: transform;
+  }
+  @include w640 {
+    max-height: 640px;
+    & .magnifiedImageArea {
+      max-height: 480px;
+      max-width: 480px;
+      box-shadow: $boxShadowHover;
+      border-radius: 16px;
+    }
+  }
 }
 
 .limeImageSection {
-  display: flex;
-  width: 35%;
-  height: 100%;
-  align-items: center;
-  justify-content: center;
-}
-.limeImageContainer {
-  position: relative;
-  border: 1px dashed red;
-  line-height: 0;
-}
-
-.magnifiedArea {
-  position: absolute;
-  background-image: url('../images/magnifyArea.png');
-  background-repeat: no-repeat;
-  background-size: contain;
-  border-radius: 8px;
-  height: var(--magnificationArea);
-  width: var(--magnificationArea);
-  border: 1px solid rgba(255,255,255,0.25);
-  top: calc(50% - (var(--magnificationArea) / 2));
-  left: calc(50% - (var(--magnificationArea) / 2));
-}
-
-.magnifiedImageContainer {
   align-items: center;
   display: flex;
-  height: 100%;
+  flex: 1 0 auto;
   justify-content: center;
-  width: 65%;
-  overflow: hidden;
-}
-
-.magnifiedImageArea {
   width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  & .limeImageContainer {
+    position: relative;
+    line-height: 0;
+  }
+  & .limeImage {
+    width: var(--imageSize);
+    line-height: 0;
+  }
+  & .magnifiedArea {
+    position: absolute;
+    background-image: url('../images/magnifyArea.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    border-radius: 8px;
+    height: var(--magnificationArea);
+    width: var(--magnificationArea);
+    border: 1px solid rgba(255,255,255,0.25);
+    top: calc(50% - (var(--magnificationArea) / 2));
+    left: calc(50% - (var(--magnificationArea) / 2));
+  }
+  @include w640 {
+    max-height: var(--imageSize);
+
+  }
 }
 
-.magnifiedImage {
-  transform: translate(0, 0);
-  width: calc(var(--imageSize) * var(--magnificationSize));
-  will-change: transform;
-}
+
+
+

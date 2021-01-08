@@ -420,10 +420,16 @@ h6 {
     line-height: 135%; } }
 
 html {
-  --imageSize: 280px;
-  --magnificationSize: 4;
+  --imageSize: 240px;
+  --magnificationSize: 3;
   --magnificationArea: 80px;
   --dropShadow: 0 1px 6px rgba(32,33,36,.28); }
+  @media only screen and (min-width: 480px) {
+    html {
+      --magnificationSize: 4; } }
+  @media only screen and (min-width: 640px) {
+    html {
+      --magnificationSize: 5; } }
 
 .mainContainer {
   align-items: center;
@@ -435,50 +441,65 @@ html {
   text-align: center;
   overflow: hidden; }
 
-.limeImage {
-  width: var(--imageSize);
-  line-height: 0; }
+.componentMagnify {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%; }
+  @media only screen and (min-width: 640px) {
+    .componentMagnify {
+      justify-content: center; } }
+
+.magnifiedImageSection {
+  align-items: center;
+  display: flex;
+  flex: 0 0 auto;
+  height: 100vw;
+  justify-content: center;
+  overflow: hidden;
+  width: 100vw; }
+  .magnifiedImageSection .magnifiedImageArea {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    overflow: hidden; }
+  .magnifiedImageSection .magnifiedImage {
+    transform: translate(0, 0);
+    width: calc(var(--imageSize) * var(--magnificationSize));
+    will-change: transform; }
+  @media only screen and (min-width: 640px) {
+    .magnifiedImageSection {
+      max-height: 640px; }
+      .magnifiedImageSection .magnifiedImageArea {
+        max-height: 480px;
+        max-width: 480px;
+        box-shadow: 0 6px 6px rgba(0, 0, 0, 0.08), 0 6px 6px rgba(0, 0, 0, 0.16), 0 0 6px rgba(0, 0, 0, 0.08);
+        border-radius: 16px; } }
 
 .limeImageSection {
-  display: flex;
-  width: 35%;
-  height: 100%;
-  align-items: center;
-  justify-content: center; }
-
-.limeImageContainer {
-  position: relative;
-  border: 1px dashed red;
-  line-height: 0; }
-
-.magnifiedArea {
-  position: absolute;
-  background-image: url("../images/magnifyArea.png");
-  background-repeat: no-repeat;
-  background-size: contain;
-  border-radius: 8px;
-  height: var(--magnificationArea);
-  width: var(--magnificationArea);
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  top: calc(50% - (var(--magnificationArea) / 2));
-  left: calc(50% - (var(--magnificationArea) / 2)); }
-
-.magnifiedImageContainer {
   align-items: center;
   display: flex;
-  height: 100%;
+  flex: 1 0 auto;
   justify-content: center;
-  width: 65%;
-  overflow: hidden; }
-
-.magnifiedImageArea {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center; }
-
-.magnifiedImage {
-  transform: translate(0, 0);
-  width: calc(var(--imageSize) * var(--magnificationSize));
-  will-change: transform; }
+  width: 100%; }
+  .limeImageSection .limeImageContainer {
+    position: relative;
+    line-height: 0; }
+  .limeImageSection .limeImage {
+    width: var(--imageSize);
+    line-height: 0; }
+  .limeImageSection .magnifiedArea {
+    position: absolute;
+    background-image: url("../images/magnifyArea.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    border-radius: 8px;
+    height: var(--magnificationArea);
+    width: var(--magnificationArea);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    top: calc(50% - (var(--magnificationArea) / 2));
+    left: calc(50% - (var(--magnificationArea) / 2)); }
+  @media only screen and (min-width: 640px) {
+    .limeImageSection {
+      max-height: var(--imageSize); } }
