@@ -419,11 +419,66 @@ h6 {
   a, h1, h2, h3, h4, h5, h6, p {
     line-height: 135%; } }
 
+html {
+  --imageSize: 280px;
+  --magnificationSize: 4;
+  --magnificationArea: 80px;
+  --dropShadow: 0 1px 6px rgba(32,33,36,.28); }
+
 .mainContainer {
-  border: 16px solid goldenrod;
+  align-items: center;
   display: flex;
-  flex-direction: column;
-  height: 100vh;
+  flex-direction: row;
   justify-content: center;
+  width: 100vw;
+  height: 100vh;
   text-align: center;
-  width: 100vw; }
+  overflow: hidden; }
+
+.limeImage {
+  width: var(--imageSize);
+  line-height: 0; }
+
+.limeImageSection {
+  display: flex;
+  width: 35%;
+  height: 100%;
+  align-items: center;
+  justify-content: center; }
+
+.limeImageContainer {
+  position: relative;
+  border: 1px dashed red;
+  line-height: 0; }
+
+.magnifiedArea {
+  position: absolute;
+  background-image: url("../images/magnifyArea.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  border-radius: 8px;
+  height: var(--magnificationArea);
+  width: var(--magnificationArea);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  top: calc(50% - (var(--magnificationArea) / 2));
+  left: calc(50% - (var(--magnificationArea) / 2)); }
+
+.magnifiedImageContainer {
+  align-items: center;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  width: 65%;
+  overflow: hidden; }
+
+.magnifiedImageArea {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+
+.magnifiedImage {
+  transform: translate(0, 0);
+  width: calc(var(--imageSize) * var(--magnificationSize));
+  will-change: transform; }
