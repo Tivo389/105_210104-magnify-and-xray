@@ -17,7 +17,12 @@ class Magnify extends Component {
   // RENDER OF COMPONENT
   render() {
     return (
-      <>
+      <div className="componentMagnify">
+        <div className="magnifiedImageSection">
+          <div className="magnifiedImageArea">
+            <img className="magnifiedImage" src={limeExterior} alt="Lime Exterior"/>
+          </div>
+        </div>
         <div className="limeImageSection">
           <div
           className="limeImageContainer"
@@ -31,12 +36,7 @@ class Magnify extends Component {
             width="100%"/>
           </div>
         </div>
-        <div className="magnifiedImageContainer">
-          <div className="magnifiedImageArea">
-            <img className="magnifiedImage" src={limeExterior} alt="Lime Exterior"/>
-          </div>
-        </div>
-      </>
+      </div>
     );
   }
 
