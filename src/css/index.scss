@@ -10,12 +10,9 @@
 
 html {
   --imageSize: 240px;
-  --magnificationSize: 3;
-  --magnificationArea: 80px;
+  --magnificationSize: 4;
+  --magnificationArea: calc(var(--imageSize) / 3);
   --dropShadow: 0 1px 6px rgba(32,33,36,.28);
-  @include w480 {
-    --magnificationSize: 4;
-  }
   @include w640 {
     --magnificationSize: 5;
   }
@@ -45,6 +42,9 @@ html {
   @include w640 {
     justify-content: center;
   }
+  @include w1024 {
+    flex-direction: row-reverse;
+  }
 }
 
 .magnifiedImageSection {
@@ -66,15 +66,31 @@ html {
     width: calc(var(--imageSize) * var(--magnificationSize));
     will-change: transform;
   }
-  @include w640 {
+  @include w480 {
     max-height: 640px;
     & .magnifiedImageArea {
-      max-height: 480px;
-      max-width: 480px;
+      max-height: 400px;
+      max-width: 400px;
       box-shadow: $boxShadowHover;
       border-radius: 16px;
     }
   }
+  @include w640 {
+    & .magnifiedImageArea {
+      max-height: 500px;
+      max-width: 500px;
+    }
+  }
+  @include w1024 {
+    height: initial;
+    width: initial;
+    overflow: visible;
+    & .magnifiedImageArea {
+      max-height: 600px;
+      max-width: 600px;
+    }
+  }
+
 }
 
 .limeImageSection {
@@ -105,7 +121,14 @@ html {
   }
   @include w640 {
     max-height: var(--imageSize);
-
+  }
+  @include w1024 {
+    width: initial;
+    flex: 0 0 auto;
+    margin-right: 64px;
+    & .limeImage {
+      width: var(--imageSize);
+    }
   }
 }
 
