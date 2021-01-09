@@ -413,7 +413,7 @@ h6 {
   a, h1, h2, h3, h4, h5, h6, p {
     line-height: 125%; } }
 
-@media only screen and (min-width: 1280px) {
+@media only screen and (min-width: 1024px) {
   html {
     --jumpRatio: 1.35; }
   a, h1, h2, h3, h4, h5, h6, p {
@@ -421,12 +421,9 @@ h6 {
 
 html {
   --imageSize: 240px;
-  --magnificationSize: 3;
-  --magnificationArea: 80px;
+  --magnificationSize: 4;
+  --magnificationArea: calc(var(--imageSize) / 3);
   --dropShadow: 0 1px 6px rgba(32,33,36,.28); }
-  @media only screen and (min-width: 480px) {
-    html {
-      --magnificationSize: 4; } }
   @media only screen and (min-width: 640px) {
     html {
       --magnificationSize: 5; } }
@@ -450,6 +447,9 @@ html {
   @media only screen and (min-width: 640px) {
     .componentMagnify {
       justify-content: center; } }
+  @media only screen and (min-width: 1024px) {
+    .componentMagnify {
+      flex-direction: row-reverse; } }
 
 .magnifiedImageSection {
   align-items: center;
@@ -468,14 +468,26 @@ html {
     transform: translate(0, 0);
     width: calc(var(--imageSize) * var(--magnificationSize));
     will-change: transform; }
-  @media only screen and (min-width: 640px) {
+  @media only screen and (min-width: 480px) {
     .magnifiedImageSection {
       max-height: 640px; }
       .magnifiedImageSection .magnifiedImageArea {
-        max-height: 480px;
-        max-width: 480px;
+        max-height: 400px;
+        max-width: 400px;
         box-shadow: 0 6px 6px rgba(0, 0, 0, 0.08), 0 6px 6px rgba(0, 0, 0, 0.16), 0 0 6px rgba(0, 0, 0, 0.08);
         border-radius: 16px; } }
+  @media only screen and (min-width: 640px) {
+    .magnifiedImageSection .magnifiedImageArea {
+      max-height: 500px;
+      max-width: 500px; } }
+  @media only screen and (min-width: 1024px) {
+    .magnifiedImageSection {
+      height: initial;
+      width: initial;
+      overflow: visible; }
+      .magnifiedImageSection .magnifiedImageArea {
+        max-height: 600px;
+        max-width: 600px; } }
 
 .limeImageSection {
   align-items: center;
@@ -503,3 +515,10 @@ html {
   @media only screen and (min-width: 640px) {
     .limeImageSection {
       max-height: var(--imageSize); } }
+  @media only screen and (min-width: 1024px) {
+    .limeImageSection {
+      width: initial;
+      flex: 0 0 auto;
+      margin-right: 64px; }
+      .limeImageSection .limeImage {
+        width: var(--imageSize); } }

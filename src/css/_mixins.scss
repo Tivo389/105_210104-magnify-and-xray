@@ -8,8 +8,8 @@
     @content;
   }
 }
-@mixin w1280 {
-  @media only screen and (min-width: 1280px) {
+@mixin w1024 {
+  @media only screen and (min-width: 1024px) {
     @content;
   }
 }
