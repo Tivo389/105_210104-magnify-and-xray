@@ -420,13 +420,19 @@ h6 {
     line-height: 135%; } }
 
 html {
-  --imageSize: 240px;
+  --imageSize: 60vw;
   --magnificationSize: 4;
-  --magnificationArea: calc(var(--imageSize) / 3);
+  --magnificationArea: calc(var(--imageSize) / var(--magnificationSize));
   --dropShadow: 0 1px 6px rgba(32,33,36,.28); }
+  @media only screen and (min-width: 480px) {
+    html {
+      --imageSize: 40vw; } }
   @media only screen and (min-width: 640px) {
     html {
-      --magnificationSize: 5; } }
+      --imageSize: 30vw; } }
+  @media only screen and (min-width: 1024px) {
+    html {
+      --imageSize: 240px; } }
 
 .mainContainer {
   align-items: center;
@@ -466,28 +472,29 @@ html {
     overflow: hidden; }
   .magnifiedImageSection .magnifiedImage {
     transform: translate(0, 0);
-    width: calc(var(--imageSize) * var(--magnificationSize));
+    width: calc((var(--imageSize) * var(--magnificationSize)) * (100 / 60));
     will-change: transform; }
   @media only screen and (min-width: 480px) {
     .magnifiedImageSection {
-      max-height: 640px; }
+      max-height: 560px; }
       .magnifiedImageSection .magnifiedImageArea {
-        max-height: 400px;
-        max-width: 400px;
         box-shadow: 0 6px 6px rgba(0, 0, 0, 0.08), 0 6px 6px rgba(0, 0, 0, 0.16), 0 0 6px rgba(0, 0, 0, 0.08);
-        border-radius: 16px; } }
+        border-radius: 16px;
+        height: 80vw;
+        width: 80vw; }
+      .magnifiedImageSection .magnifiedImage {
+        width: calc((var(--imageSize) * var(--magnificationSize)) * (80 / 40)); } }
   @media only screen and (min-width: 640px) {
     .magnifiedImageSection .magnifiedImageArea {
       max-height: 500px;
-      max-width: 500px; } }
+      max-width: 500px; }
+    .magnifiedImageSection .magnifiedImage {
+      width: calc((var(--imageSize) * var(--magnificationSize)) * (80 / 30)); } }
   @media only screen and (min-width: 1024px) {
     .magnifiedImageSection {
       height: initial;
       width: initial;
-      overflow: visible; }
-      .magnifiedImageSection .magnifiedImageArea {
-        max-height: 600px;
-        max-width: 600px; } }
+      overflow: visible; } }
 
 .limeImageSection {
   align-items: center;

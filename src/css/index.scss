@@ -9,12 +9,18 @@
 
 
 html {
-  --imageSize: 240px;
+  --imageSize: 60vw;
   --magnificationSize: 4;
-  --magnificationArea: calc(var(--imageSize) / 3);
+  --magnificationArea: calc(var(--imageSize) / var(--magnificationSize));
   --dropShadow: 0 1px 6px rgba(32,33,36,.28);
+  @include w480 {
+    --imageSize: 40vw;
+  }
   @include w640 {
-    --magnificationSize: 5;
+    --imageSize: 30vw;
+  }
+  @include w1024 {
+    --imageSize: 240px;
   }
 }
 
@@ -47,6 +53,8 @@ html {
   }
 }
 
+
+
 .magnifiedImageSection {
   align-items: center;
   display: flex;
@@ -63,16 +71,19 @@ html {
   }
   & .magnifiedImage {
     transform: translate(0, 0);
-    width: calc(var(--imageSize) * var(--magnificationSize));
+    width: calc((var(--imageSize) * var(--magnificationSize)) * (100 / 60)); // 100vw / 60vw
     will-change: transform;
   }
   @include w480 {
-    max-height: 640px;
+    max-height: 560px;
     & .magnifiedImageArea {
-      max-height: 400px;
-      max-width: 400px;
       box-shadow: $boxShadowHover;
       border-radius: 16px;
+      height: 80vw;
+      width: 80vw;
+    }
+    & .magnifiedImage {
+      width: calc((var(--imageSize) * var(--magnificationSize)) * (80 / 40)); // 80vw / 40vw
     }
   }
   @include w640 {
@@ -80,18 +91,18 @@ html {
       max-height: 500px;
       max-width: 500px;
     }
+    & .magnifiedImage {
+      width: calc((var(--imageSize) * var(--magnificationSize)) * (80 / 30)); // 80vw / 30vw
+    }
   }
   @include w1024 {
     height: initial;
     width: initial;
     overflow: visible;
-    & .magnifiedImageArea {
-      max-height: 600px;
-      max-width: 600px;
-    }
   }
-
 }
+
+
 
 .limeImageSection {
   align-items: center;
